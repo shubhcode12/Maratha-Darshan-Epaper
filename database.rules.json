@@ -1,0 +1,89 @@
+{
+  "rules": {
+    "papers": {
+      ".read": true,
+      ".write": "auth.token.email == 'admin@enewspaper.com'",
+      ".indexOn": ["date", "timestamp", "addedOn"],
+      "$paperId": {
+        "date": {
+          ".validate": "newData.isString() && newData.val().length >= 8 && newData.val().length <= 12"
+        },
+        "addedOn": {
+          ".validate": "newData.val() <= now"
+        },
+        "pdfDownload": {
+          ".validate": "newData.isString() && newData.val().length < 500"
+        },
+        "pages": {
+          "$pageId": {
+            "title": {
+              ".validate": "newData.isString() && newData.val().length <= 100"
+            },
+            "img": {
+              ".validate": "newData.isString() && newData.val().length <= 300"
+            },
+            "links": {
+              "$linkId": {
+                "style": {
+                  "width": {
+                    ".validate": true
+                  },
+                  "height": {
+                    ".validate": true
+                  },
+                  "x": {
+                    ".validate": true
+                  },
+                  "y": {
+                    ".validate": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "contact-requests": {
+      ".read": "auth.token.email == 'admin@enewspaper.com'",
+      ".write": true,
+      ".indexOn": "timestamp",
+      "$contactKey": {
+        "timestamp": {
+          ".validate": "newData.val() <= now"
+        },
+        "name": {
+          ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 50"
+        },
+        "email": {
+          ".validate": "newData.isString() && newData.val().length > 8 && newData.val().length <= 100"
+        },
+        "phone": {
+          ".validate": "newData.isString() && newData.val().length <= 15"
+        },
+        "message": {
+          ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 5000"
+        },
+        "$other": {
+          ".validate": false
+        }
+      }
+    },
+    "subscribers": {
+      ".read": "auth.token.email == 'admin@enewspaper.com'",
+      ".write": true,
+      ".indexOn": "addedOn",
+      "$itemKey": {
+        "addedOn": {
+          ".validate": "newData.val() <= now"
+        },
+        "email": {
+          ".validate": "newData.isString() && newData.val().length > 8 && newData.val().length <= 100"
+        },
+        "$othe": {
+          ".validate": false
+        }
+      }
+    }
+  }
+}

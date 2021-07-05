@@ -1,0 +1,6 @@
+.next
+.vercel
+node_modules
+database-debug.log
+ui-debug.log
+firebase-debug.log

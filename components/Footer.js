@@ -54,7 +54,7 @@ export default function Footer() {
         <h4>Views counter</h4>
         <p>{visits || "Loading"}</p>
       </div>
-      <img src="/aadvaith.png" className="credits-aadvaith" />
+      {/* <img src="/aadvaith.png" className="credits-aadvaith" /> */}
       <footer>
         <div className="footer-content" style={config.showNewsletter ? undefined : { textAlign: "center" }}>
           <div className="col">

@@ -11,7 +11,7 @@ export default function About() {
       </div>
       <div className="about-text">
         {config.aboutPage.description.map((text, i) => (
-          <p key={i}>{text}</p>
+          <p align="center" key={i}>{text}</p>
         ))}
       </div>
       <div className="about-contact">
